@@ -2,7 +2,7 @@
 <html lang="az">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Baklava Evi | Premium Əl İşləri</title>
     <style>
         :root {
@@ -19,6 +19,8 @@
             background-color: var(--cream);
             color: var(--dark);
             line-height: 1.6;
+            /* Mobil double-tap zoom-u brauzer səviyyəsində də dayandırmaq üçün */
+            touch-action: manipulation;
         }
 
         header {
@@ -31,29 +33,31 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            /* Header-in hündürlüyünü sabit saxlamaq üçün max-height əlavə edə bilərik,
-               amma mənfi margin ilə buna ehtiyac yoxdur. */
         }
 
-        /* Loqo konteyneri */
         .logo {
             display: flex;
             align-items: center;
-            position: relative; /* Mənfi margin üçün vacibdir */
+            position: relative;
+            /* Üçüncü məsələ: Loqonun klikləri bloklamaması üçün pointer-events */
+            pointer-events: none; 
+            z-index: 1;
         }
 
         .logo img {
-            /* Hündürlüyü əhəmiyyətli dərəcədə artırırıq */
             height: 180px;
-            /* Mənfi margin ilə loqonu yuxarı və aşağı "itələyirik",
-               beləcə header-i genəltmədən kənara çıxır.
-               Bu dəyərləri loqonuzun formasına görə tənzimləyə bilərsiniz. */
             margin-top: -40px;
             margin-bottom: -40px;
-            /* Loqonun kəsilməməsi üçün: */
             object-fit: contain;
-            /* Header-dən asılı olmayaraq vizual mərkəzləşdirmə */
-            transform: translateY(10px); /* Loqonu vizual olaraq mərkəzləşdirmək üçün kiçik tənzimləmə */
+            transform: translateY(10px);
+            /* Şəklin özü kliklənə bilsin (əgər gələcəkdə link qoysanız) */
+            pointer-events: auto;
+        }
+
+        nav {
+            /* Menyunun loqonun üstündə qalması üçün */
+            position: relative;
+            z-index: 1001;
         }
 
         nav a {
@@ -63,6 +67,8 @@
             font-weight: 600;
             text-transform: uppercase;
             font-size: 0.85rem;
+            position: relative;
+            pointer-events: auto;
         }
 
         .hero {
@@ -71,6 +77,7 @@
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('photos/IMG_4549.jpg');
             background-size: cover;
             background-position: center;
+            /* İkinci məsələ üçün qeyd: bəzi mobil brauzerlər 'fixed' dəstəkləmir */
             background-attachment: fixed;
             color: var(--white);
         }
@@ -96,7 +103,6 @@
             margin: 0 auto;
         }
 
-        /* NİYƏ BİZ? BÖLMƏSİ */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -158,7 +164,6 @@
             line-height: 1.7;
         }
 
-        /* MƏHSULLAR BÖLMƏSİ */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -202,13 +207,12 @@
                 padding: 1rem 3%;
                 flex-direction: column;
                 text-align: center;
-                /* Mobil header-in hündürlüyünü də genəltməmək üçün padding-i azaltdıq */
             }
             .logo {
-                margin-bottom: 0.5rem; /* Mobil üçün kiçik ara */
+                margin-bottom: 0.5rem;
+                pointer-events: none; /* Mobildə də linklərin önünü kəsməməsi üçün */
             }
             .logo img {
-                /* Mobil üçün də loqonu böyüdürük, mənfi margin-i saxlayırıq */
                 height: 120px;
                 margin-top: -30px;
                 margin-bottom: -30px;
@@ -218,7 +222,11 @@
                 margin: 0 10px;
                 font-size: 0.8rem;
             }
-            .hero { padding: 80px 5%; }
+            .hero { 
+                padding: 80px 5%; 
+                /* İkinci məsələ: Mobildə fixed background çox vaxt işləmir, scroll-a keçiririk */
+                background-attachment: scroll; 
+            }
             .hero h1 { font-size: 2rem; }
             .section { padding: 40px 5%; }
             .section-title h2 { font-size: 1.8rem; }
