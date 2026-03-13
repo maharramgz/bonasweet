@@ -11,6 +11,8 @@
             --cream: #f9f3e5; 
             --white: #ffffff;
             --gold-light: #e0c9a6;
+            /* Header və kartlar üçün yeni ortaq, zərif isti-ağ rəng */
+            --box-bg: #fffdf5; 
         }
 
         body {
@@ -23,7 +25,7 @@
         }
 
         header {
-            background: var(--white);
+            background: var(--box-bg); /* Rəng dəyişdirildi */
             padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
@@ -45,7 +47,6 @@
         .logo img {
             height: 180px;
             margin-top: -40px;
-            /* Loqo ilə düymələr arasında boşluq yaratmaq üçün alt marjini azaltdıq */
             margin-bottom: -15px; 
             object-fit: contain;
             transform: translateY(10px);
@@ -107,7 +108,7 @@
         }
 
         .feature-card {
-            background: var(--white);
+            background: var(--box-bg); /* Rəng dəyişdirildi */
             padding: 25px 20px;
             border-radius: 0;
             border: 1px solid var(--gold-light);
@@ -144,7 +145,7 @@
         }
 
         .product-card {
-            background: var(--white);
+            background: var(--box-bg); /* Rəng dəyişdirildi */
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s;
@@ -207,14 +208,12 @@
         @media (max-width: 768px) {
             header { padding: 1rem 3%; flex-direction: column; }
             .logo img { 
-                height: 120px; 
-                margin-top: -30px; 
-                /* Mobildə də loqo ilə menyu arasında boşluq üçün tənzimləmə */
-                margin-bottom: -10px; 
+                height: 140px; /* Mobildə loqo bir az böyüdü (120-dən 140-a) */
+                margin-top: -40px; /* Header-in genəlməməsi üçün tənzimləndi */
+                margin-bottom: -20px; /* Header-in genəlməməsi üçün tənzimləndi */
                 transform: translateY(5px); 
             }
             nav {
-                /* Naviqasiya üçün əlavə yuxarı boşluq (loqodan uzaqlaşmaq üçün) */
                 margin-top: 10px; 
             }
             nav a { margin: 0 10px; font-size: 0.8rem; }
