@@ -10,6 +10,7 @@
             --dark: #2c2c2c;
             --cream: #fdfaf5;
             --white: #ffffff;
+            --gold-light: #e0c9a6;
         }
 
         body {
@@ -30,10 +31,29 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            /* Header-in hündürlüyünü sabit saxlamaq üçün max-height əlavə edə bilərik,
+               amma mənfi margin ilə buna ehtiyac yoxdur. */
+        }
+
+        /* Loqo konteyneri */
+        .logo {
+            display: flex;
+            align-items: center;
+            position: relative; /* Mənfi margin üçün vacibdir */
         }
 
         .logo img {
-            height: 100px;
+            /* Hündürlüyü əhəmiyyətli dərəcədə artırırıq */
+            height: 180px;
+            /* Mənfi margin ilə loqonu yuxarı və aşağı "itələyirik",
+               beləcə header-i genəltmədən kənara çıxır.
+               Bu dəyərləri loqonuzun formasına görə tənzimləyə bilərsiniz. */
+            margin-top: -40px;
+            margin-bottom: -40px;
+            /* Loqonun kəsilməməsi üçün: */
+            object-fit: contain;
+            /* Header-dən asılı olmayaraq vizual mərkəzləşdirmə */
+            transform: translateY(10px); /* Loqonu vizual olaraq mərkəzləşdirmək üçün kiçik tənzimləmə */
         }
 
         nav a {
@@ -47,41 +67,98 @@
 
         .hero {
             text-align: center;
-            padding: 120px 10%; /* Mobil üçün padding-i artırdıq */
-            /* Arxa plan şəkli üçün dəyişikliklər: */
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('photos/IMG_4549.jpg'); /* 'photos/hero-bg.jpg' yerinə öz şəklinizin adını yazın */
+            padding: 120px 10%;
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('photos/IMG_4549.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Arxa plan şəklinin sabit qalması üçün (isteğe bağlı) */
+            background-attachment: fixed;
             color: var(--white);
         }
 
         .hero h1 { font-size: 2.8rem; margin-bottom: 10px; }
 
-        .section { padding: 60px 10%; }
+        .section { padding: 80px 10%; }
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
         .section-title h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--gold);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .section-title p {
+            font-style: italic;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
+        /* NİYƏ BİZ? BÖLMƏSİ */
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            text-align: center;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
         .feature-card {
             background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            padding: 40px 30px;
+            border-radius: 0;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            position: relative;
+            transition: all 0.4s ease;
+            text-align: center;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: var(--gold);
+        }
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        .feature-icon-circle {
+            width: 70px;
+            height: 70px;
+            background: var(--cream);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .feature-card h3 {
+            color: var(--dark);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
         }
 
+        /* MƏHSULLAR BÖLMƏSİ */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -119,42 +196,34 @@
             padding: 40px;
         }
 
-        /* Mobil Optimizasiya üçün Media Query: */
+        /* Mobil Optimizasiya */
         @media (max-width: 768px) {
             header {
-                padding: 1rem 3%; /* Header padding-ini azaltdıq */
-                flex-direction: column; /* Loqo və nav-ı alt-alta qoyduq */
+                padding: 1rem 3%;
+                flex-direction: column;
                 text-align: center;
+                /* Mobil header-in hündürlüyünü də genəltməmək üçün padding-i azaltdıq */
             }
-
+            .logo {
+                margin-bottom: 0.5rem; /* Mobil üçün kiçik ara */
+            }
             .logo img {
-                height: 100px; /* Mobil üçün loqonu kiçiltdik */
-                margin-bottom: 1rem;
+                /* Mobil üçün də loqonu böyüdürük, mənfi margin-i saxlayırıq */
+                height: 120px;
+                margin-top: -30px;
+                margin-bottom: -30px;
+                transform: translateY(5px);
             }
-
             nav a {
-                margin: 0 10px; /* Nav linkləri arasındakı məsafəni azaltdıq */
+                margin: 0 10px;
                 font-size: 0.8rem;
             }
-
-            .hero {
-                padding: 80px 5%; /* Hero padding-ini azaltdıq */
-            }
-
-            .hero h1 {
-                font-size: 2rem; /* Hero başlığını kiçiltdik */
-            }
-
-            .section {
-                padding: 40px 5%; /* Bölmə padding-ini azaltdıq */
-            }
-
-            .section-title h2 {
-                font-size: 1.8rem; /* Bölmə başlığını kiçiltdik */
-            }
-
+            .hero { padding: 80px 5%; }
+            .hero h1 { font-size: 2rem; }
+            .section { padding: 40px 5%; }
+            .section-title h2 { font-size: 1.8rem; }
             .product-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Məhsul şəbəkəsini uyğunlaşdırdıq */
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
                 gap: 20px;
             }
         }
@@ -181,20 +250,23 @@
 <section id="quality" class="section">
     <div class="section-title">
         <h2>Niyə Biz?</h2>
-        <p>Keyfiyyət və təbiiliyin tək ünvanı</p>
+        <p>Hər bir dilimdə illərin təcrübəsi və premium inqrediyentlərin mükəmməl harmoniyası</p>
     </div>
     <div class="features">
         <div class="feature-card">
+            <div class="feature-icon-circle">01</div>
             <h3>Yüksək Keyfiyyət</h3>
-            <p>Yalnız seçilmiş Antep püstəsi və ən təmiz kərə yağından istifadə edirik.</p>
+            <p>Yalnız seçilmiş Antep püstəsi və ən təmiz kərə yağından istifadə edirik. Dadımız təbiiliyimizdən gəlir.</p>
         </div>
         <div class="feature-card">
+            <div class="feature-icon-circle">02</div>
             <h3>Gündəlik Təravət</h3>
-            <p>Məhsullarımız heç bir konservant əlavə edilmədən, sifariş günü bişirilir.</p>
+            <p>Məhsullarımız heç bir konservant əlavə edilmədən, sifariş günü bişirilir. Süfrənizə gələn hər paxlava ətri üstündədir.</p>
         </div>
         <div class="feature-card">
+            <div class="feature-icon-circle">03</div>
             <h3>Mütləq Gigiyena</h3>
-            <p>Hazırlanma prosesində bütün sanitariya qaydalarına ciddi riayət olunur.</p>
+            <p>Hazırlanma prosesində bütün sanitariya qaydalarına mütləq riayət olunur. Sağlamlığınız bizim üçün dad qədər önəmlidir.</p>
         </div>
     </div>
 </section>
