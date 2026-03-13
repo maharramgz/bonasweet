@@ -8,8 +8,8 @@
         :root {
             --gold: #c5a059;
             --dark: #2c2c2c;
-            /* Üçüncü təkmilləşdirmə: Premium butter-gold rəngi */
-            --cream: #f4eee1; 
+            /* Yeni kərə yağı tonunda qızılı arxa plan */
+            --cream: #f9f1e2; 
             --white: #ffffff;
             --gold-light: #e0c9a6;
         }
@@ -92,43 +92,46 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
+        .section-title p {
+            font-style: italic;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-        /* İkinci təkmilləşdirmə: Premium Why Us Dizaynı */
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
         .feature-card {
-            background: rgba(255, 255, 255, 0.5); /* Şəffaf premium effekt */
+            background: var(--white);
             padding: 40px 30px;
-            border: 1px solid var(--gold-light);
+            border-radius: 0;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            position: relative;
+            transition: all 0.4s ease;
             text-align: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            overflow: hidden;
         }
         .feature-card:hover {
-            background: var(--white);
-            transform: translateY(-5px);
-            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
-        .feature-number {
-            font-family: serif;
-            font-size: 1.2rem;
+
+        .feature-icon-circle {
+            width: 70px;
+            height: 70px;
+            background: var(--cream);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--gold);
-            display: block;
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-        .feature-card h3 {
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-        .feature-card p {
-            font-size: 0.9rem;
-            color: #555;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
         .product-grid {
@@ -144,6 +147,7 @@
             border: 1px solid #eee;
             position: relative;
         }
+        
         .price-tag {
             position: absolute;
             top: 15px;
@@ -154,9 +158,11 @@
             border-radius: 20px;
             font-weight: bold;
             font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             z-index: 2;
         }
 
+        .product-card:hover { transform: translateY(-5px); }
         .product-card img {
             width: 100%;
             height: 250px;
@@ -178,44 +184,58 @@
             background: var(--dark);
             color: var(--white);
             text-align: center;
-            padding: 60px 10%;
+            padding: 40px;
         }
 
-        /* BİRİNCİ TƏKMİLLƏŞDİRMƏ: MOBİL ÖLÇÜLƏRİN KİÇİLDİLMƏSİ */
         @media (max-width: 768px) {
-            header { padding: 1rem 3%; flex-direction: column; }
-            .logo img {
-                height: 110px;
-                margin-top: -25px;
-                margin-bottom: -25px;
+            header {
+                padding: 1rem 3%;
+                flex-direction: column;
+                text-align: center;
             }
+            .logo img {
+                height: 120px;
+                margin-top: -30px;
+                margin-bottom: -30px;
+                transform: translateY(5px);
+            }
+            nav a { margin: 0 10px; font-size: 0.8rem; }
             
+            /* Mobil üçün Hero-nun kiçildilməsi */
             .hero { 
-                padding: 60px 5%; /* Hero kiçildildi */
+                padding: 50px 5%; 
                 background-attachment: scroll; 
             }
             .hero h1 { font-size: 1.6rem; }
             .hero p { font-size: 0.85rem; }
             
-            .section { padding: 40px 5%; } /* Ümumi section paddingləri azaldıldı */
+            /* Bölmələrin (Why Us və s.) kiçildilməsi */
+            .section { padding: 35px 5%; }
             .section-title { margin-bottom: 25px; }
             .section-title h2 { font-size: 1.4rem; }
+            .section-title p { font-size: 0.85rem; }
             
-            /* Why Us Mobil */
             .features { gap: 15px; }
-            .feature-card { padding: 25px 15px; }
-            .feature-card h3 { font-size: 0.9rem; }
-            .feature-card p { font-size: 0.8rem; }
-
-            .product-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 12px;
+            .feature-card { padding: 20px 15px; }
+            .feature-icon-circle { 
+                width: 50px; 
+                height: 50px; 
+                font-size: 1.1rem; 
+                margin-bottom: 15px; 
             }
-            .product-card img { height: 150px; }
-            .product-info h3 { font-size: 0.85rem; }
+            .feature-card h3 { font-size: 1rem; margin-bottom: 8px; }
+            .feature-card p { font-size: 0.8rem; }
             
-            /* Footer/Contact Mobil kiçildilməsi */
-            footer { padding: 30px 5%; }
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 15px;
+            }
+            .product-card img { height: 160px; }
+            .product-info { padding: 12px; }
+            .product-info h3 { font-size: 0.9rem; }
+            
+            /* Footer/Order məlumatlarının kiçildilməsi */
+            footer { padding: 25px 20px; }
             footer h2 { font-size: 1.3rem; margin-bottom: 10px; }
             footer p { font-size: 0.8rem; line-height: 1.4; }
         }
@@ -242,22 +262,23 @@
 <section id="quality" class="section">
     <div class="section-title">
         <h2>Niyə Biz?</h2>
+        <p>Hər bir dilimdə illərin təcrübəsi və premium inqrediyentlərin mükəmməl harmoniyası</p>
     </div>
     <div class="features">
         <div class="feature-card">
-            <span class="feature-number">I. Premium</span>
+            <div class="feature-icon-circle">01</div>
             <h3>Yüksək Keyfiyyət</h3>
-            <p>Seçilmiş Antep püstəsi və ən təmiz kərə yağı.</p>
+            <p>Yalnız seçilmiş Antep püstəsi və ən təmiz kərə yağından istifadə edirik.</p>
         </div>
         <div class="feature-card">
-            <span class="feature-number">II. Təzə</span>
+            <div class="feature-icon-circle">02</div>
             <h3>Gündəlik Təravət</h3>
-            <p>Sifariş günü bişirilir, konservantsız hazırlanır.</p>
+            <p>Məhsullarımız heç bir konservant əlavə edilmədən, sifariş günü bişirilir.</p>
         </div>
         <div class="feature-card">
-            <span class="feature-number">III. Təmiz</span>
+            <div class="feature-icon-circle">03</div>
             <h3>Mütləq Gigiyena</h3>
-            <p>Bütün sanitar qaydalara ciddi riayət olunur.</p>
+            <p>Hazırlanma prosesində bütün sanitariya qaydalarına mütləq riayət olunur.</p>
         </div>
     </div>
 </section>
@@ -272,25 +293,25 @@
             <img src="photos/klasik.png" alt="Püstəli Paxlava">
             <div class="product-info">
                 <h3>Klassik Türk Paxlavası</h3>
-                <p>Bol püstəli içlik.</p>
+                <p>İncə yayılmış 40 qat xəmir və bol püstə içliyi.</p>
                 <a href="https://wa.me/994XXXXXXXXX" class="btn-order">Sifariş Et</a>
             </div>
         </div>
         <div class="product-card">
             <div class="price-tag">28 AZN</div>
-            <img src="photos/sobiyet.png" alt="Qaymaqlı Şöbiyet">
+            <img src="photos/sobiyet.png" alt="Qozlu Paxlava">
             <div class="product-info">
                 <h3>Qaymaqlı Şöbiyet</h3>
-                <p>İdeal şərbət balansı.</p>
+                <p>Xüsusi seçilmiş qoz ləpəsi və ideal şərbət balansı.</p>
                 <a href="https://wa.me/994XXXXXXXXX" class="btn-order">Sifariş Et</a>
             </div>
         </div>
         <div class="product-card">
             <div class="price-tag">30 AZN</div>
-            <img src="photos/sokoladli.png" alt="Şokoladlı Türk Paxlavası">
+            <img src="photos/sokoladli.png" alt="Şokoladlı Paxlava">
             <div class="product-info">
                 <h3>Şokoladlı Türk Paxlavası</h3>
-                <p>Fındıq və şokolad uyğunluğu.</p>
+                <p>Şokolad qatları və fındıq ləpəsinin mükəmməl uyğunluğu.</p>
                 <a href="https://wa.me/994XXXXXXXXX" class="btn-order">Sifariş Et</a>
             </div>
         </div>
@@ -299,34 +320,34 @@
             <img src="photos/diaqonal.png" alt="Şokoladlı Paxlava">
             <div class="product-info">
                 <h3>Şokoladlı Paxlava</h3>
-                <p>Fındıq və şokolad.</p>
+                <p>Şokolad qatları və fındıq ləpəsinin mükəmməl uyğunluğu.</p>
                 <a href="https://wa.me/994XXXXXXXXX" class="btn-order">Sifariş Et</a>
             </div>
         </div>
         <div class="product-card">
             <div class="price-tag">32 AZN</div>
-            <img src="photos/nutellali.png" alt="Nutellalı">
+            <img src="photos/nutellali.png" alt="Şokoladlı Paxlava">
             <div class="product-info">
                 <h3>Nutellalı</h3>
-                <p>Xüsusi şokolad dadı.</p>
+                <p>Şokolad qatları və fındıq ləpəsinin mükəmməl uyğunluğu.</p>
                 <a href="https://wa.me/994XXXXXXXXX" class="btn-order">Sifariş Et</a>
             </div>
         </div>
         <div class="product-card">
             <div class="price-tag">27 AZN</div>
-            <img src="photos/kadayif.png" alt="Kadayif">
+            <img src="photos/kadayif.png" alt="Şokoladlı Paxlava">
             <div class="product-info">
-                <h3>Kadayif</h3>
-                <p>Xırtıldayan dad.</p>
+                <h3>Şokoladlı Paxlava</h3>
+                <p>Şokolad qatları və fındıq ləpəsinin mükəmməl uyğunluğu.</p>
                 <a href="https://wa.me/994XXXXXXXXX" class="btn-order">Sifariş Et</a>
             </div>
         </div>
         <div class="product-card">
             <div class="price-tag">29 AZN</div>
-            <img src="photos/IMG_4539.jpg" alt="Soyuq Paxlava">
+            <img src="photos/IMG_4539.jpg" alt="Şokoladlı Paxlava">
             <div class="product-info">
                 <h3>Soyuq Paxlava</h3>
-                <p>Südlü və yüngül.</p>
+                <p>Şokolad qatları və fındıq ləpəsinin mükəmməl uyğunluğu.</p>
                 <a href="https://wa.me/994XXXXXXXXX" class="btn-order">Sifariş Et</a>
             </div>
         </div>
@@ -335,7 +356,7 @@
 
 <footer id="order">
     <h2>Sifariş üçün</h2>
-    <p>WhatsApp və ya zəng vasitəsilə əlaqə saxlaya bilərsiniz.</p>
+    <p>Biz yalnız onlayn sifarişlə çalışırıq. WhatsApp və ya zəng vasitəsilə əlaqə saxlaya bilərsiniz.</p>
     <p><strong>Telefon/WP:</strong> +994 00 000 00 00</p>
     <p>&copy; 2026 Bona Sweet Phaklava</p>
 </footer>
