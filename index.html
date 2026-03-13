@@ -100,6 +100,43 @@
             font-size: 0.95rem;
         }
 
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--box-bg);
+            padding: 25px 20px;
+            border-radius: 0;
+            border: 1px solid var(--gold-light);
+            outline: 1px solid var(--gold-light);
+            outline-offset: -8px;
+            position: relative;
+            transition: all 0.4s ease;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .feature-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+        .feature-card p { font-size: 0.9rem; margin: 0; }
+
+        .feature-icon-circle {
+            width: 55px;
+            height: 55px;
+            background: var(--cream);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -110,26 +147,26 @@
             background: var(--box-bg);
             border-radius: 12px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid #eee;
             position: relative;
             display: flex;
             flex-direction: column;
         }
 
-        /* 4. Şəkillər üçün zərif tənzimləmə və Hover effekti */
+        /* İnteraktivlik əlavə edildi */
         .product-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .product-card img {
-            width: calc(100% - 20px);
+            width: 100%;
             height: 200px;
             object-fit: cover;
-            margin: 10px auto 0;
-            border-radius: 8px; /* Zərif künc yuvarlaqlığı */
-            border: 1px solid rgba(197, 160, 89, 0.2); /* İnce qızılı kənar */
+            /* Task 4: Şəkillər üçün incə kənar və künc yuvarlaqlığı */
+            border-bottom: 2px solid var(--gold-light);
+            border-radius: 12px 12px 0 0;
         }
 
         .product-info { 
@@ -142,12 +179,12 @@
         }
         
         .product-info h3 { font-size: 1.1rem; margin: 5px 0; }
-        .product-info p { font-size: 0.85rem; margin-bottom: 15px; line-height: 1.4; }
+        .product-info p { font-size: 0.85rem; margin-bottom: 10px; line-height: 1.4; }
 
         .price-tag {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 12px;
+            right: 12px;
             background: var(--gold);
             color: white;
             padding: 4px 12px;
@@ -171,72 +208,28 @@
         }
 
         .btn-order:hover {
-            background: #b08e4d;
+            background: #af8d4a;
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .feature-card {
+        /* Task 5: İnstagram bloku üçün stil */
+        .instagram-section {
             background: var(--box-bg);
-            padding: 25px 20px;
-            border-radius: 0;
-            border: 1px solid var(--gold-light);
-            outline: 1px solid var(--gold-light);
-            outline-offset: -8px;
-            position: relative;
             text-align: center;
-            overflow: hidden;
+            padding: 50px 10%;
+            border-top: 1px solid var(--gold-light);
+            border-bottom: 1px solid var(--gold-light);
         }
-        
-        .feature-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
-        .feature-card p { font-size: 0.9rem; margin: 0; }
 
-        .feature-icon-circle {
-            width: 55px;
-            height: 55px;
-            background: var(--cream);
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            font-size: 1.2rem;
+        .insta-btn {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
             font-weight: bold;
-        }
-
-        /* 5. Sosial Sübut (Rəylər) Bölməsi */
-        .testimonials {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .testimonial-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 4px solid var(--gold);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .testimonial-card .author {
-            font-weight: bold;
-            color: var(--gold);
-            font-size: 0.85rem;
-            display: block;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
         }
 
         footer {
@@ -254,14 +247,29 @@
                 margin-bottom: -20px; 
                 transform: translateY(5px); 
             }
-            nav { margin-top: 10px; }
+            nav {
+                margin-top: 10px; 
+            }
             nav a { margin: 0 10px; font-size: 0.8rem; }
+            
             .hero { padding: 60px 5%; background-attachment: scroll; }
             .hero h1 { font-size: 1.8rem; }
+            
             .section { padding: 35px 5%; }
             .section-title h2 { font-size: 1.4rem; }
-            .product-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
-            .product-card img { height: 140px; width: calc(100% - 16px); margin: 8px auto 0; }
+            
+            .features { gap: 15px; }
+            .feature-card { padding: 18px 12px; outline-offset: -6px; }
+            .feature-icon-circle { width: 45px; height: 45px; font-size: 1rem; }
+            
+            footer { padding: 30px 20px; }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 12px;
+            }
+            .product-card img { height: 140px; }
+            .product-info { padding: 10px; }
             .product-info h3 { font-size: 0.9rem; }
             .product-info p { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 0.75rem; }
             .btn-order { padding: 6px 12px; font-size: 0.75rem; }
@@ -277,7 +285,7 @@
     <nav>
         <a href="#products">Məhsullar</a>
         <a href="#quality">Keyfiyyət</a>
-        <a href="#testimonials">Rəylər</a>
+        <a href="#order">Sifariş</a>
     </nav>
 </header>
 
@@ -289,7 +297,6 @@
 <section id="products" class="section">
     <div class="section-title">
         <h2>Məhsullarımız</h2>
-        <p>Hər bir dilimdə illərin təcrübəsi</p>
     </div>
     <div class="product-grid">
         <div class="product-card">
@@ -298,7 +305,7 @@
             <div class="product-info">
                 <h3>Klassik Türk Paxlavası</h3>
                 <p>İncə 40 qat xəmir və bol püstə.</p>
-                <a href="https://wa.me/994XXXXXXXXX?text=Salam,%20Klassik%20Türk%20Paxlavası%20sifariş%20etmək%20istəyirəm." class="btn-order">Sifariş Et</a>
+                <a href="https://wa.me/994XXXXXXXXX?text=Salam,%20Klassik%20T%C3%BCrk%20Paxlavas%C4%B1%20sifari%C5%9F%20etm%C3%A4k%20ist%C3%A4yir%C3%A4m." class="btn-order">Sifariş Et</a>
             </div>
         </div>
         <div class="product-card">
@@ -307,7 +314,7 @@
             <div class="product-info">
                 <h3>Qaymaqlı Şöbiyet</h3>
                 <p>Xüsusi qoz və ideal şərbət balansı.</p>
-                <a href="https://wa.me/994XXXXXXXXX?text=Salam,%20Qaymaqlı%20Şöbiyet%20sifariş%20etmək%20istəyirəm." class="btn-order">Sifariş Et</a>
+                <a href="https://wa.me/994XXXXXXXXX?text=Salam,%20Qaymaql%C4%B1%20%C5%9E%C3%B6biyet%20sifari%C5%9F%20etm%C3%A4k%20ist%C3%A4yir%C3%A4m." class="btn-order">Sifariş Et</a>
             </div>
         </div>
         <div class="product-card">
@@ -316,16 +323,43 @@
             <div class="product-info">
                 <h3>Şokoladlı Türk Paxlavası</h3>
                 <p>Şokolad qatları və fındıq uyğunluğu.</p>
-                <a href="https://wa.me/994XXXXXXXXX?text=Salam,%20Şokoladlı%20Türk%20Paxlavası%20sifariş%20etmək%20istəyirəm." class="btn-order">Sifariş Et</a>
+                <a href="https://wa.me/994XXXXXXXXX?text=Salam,%20%C5%9Eokoladl%C4%B1%20T%C3%BCrk%20Paxlavas%C4%B1%20sifari%C5%9F%20etm%C3%A4k%20ist%C3%A4yir%C3%A4m." class="btn-order">Sifariş Et</a>
             </div>
         </div>
         <div class="product-card">
             <div class="price-tag">30 AZN</div>
             <img src="photos/diaqonal.png" alt="Şokoladlı Paxlava">
             <div class="product-info">
-                <h3>Diaqonal Paxlava</h3>
-                <p>Xüsusi kəsim və bol içlik.</p>
-                <a href="https://wa.me/994XXXXXXXXX?text=Salam,%20Diaqonal%20Paxlava%20sifariş%20etmək%20istəyirəm." class="btn-order">Sifariş Et</a>
+                <h3>Şokoladlı Paxlava</h3>
+                <p>Şokolad qatları və fındıq uyğunluğu.</p>
+                <a href="https://wa.me/994XXXXXXXXX?text=Salam,%20%C5%9Eokoladl%C4%B1%20Paxlava%20sifari%C5%9F%20etm%C3%A4k%20ist%C3%A4yir%C3%A4m." class="btn-order">Sifariş Et</a>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="price-tag">32 AZN</div>
+            <img src="photos/nutellali.png" alt="Şokoladlı Paxlava">
+            <div class="product-info">
+                <h3>Nutellalı</h3>
+                <p>Şokolad qatları və fındıq uyğunluğu.</p>
+                <a href="https://wa.me/994XXXXXXXXX?text=Salam,%20Nutellal%C4%B1%20paxlava%20sifari%C5%9F%20etm%C3%A4k%20ist%C3%A4yir%C3%A4m." class="btn-order">Sifariş Et</a>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="price-tag">27 AZN</div>
+            <img src="photos/kadayif.png" alt="Şokoladlı Paxlava">
+            <div class="product-info">
+                <h3>Kadayif</h3>
+                <p>Şokolad qatları və fındıq uyğunluğu.</p>
+                <a href="https://wa.me/994XXXXXXXXX?text=Salam,%20Kadayif%20sifari%C5%9F%20etm%C3%A4k%20ist%C3%A4yir%C3%A4m." class="btn-order">Sifariş Et</a>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="price-tag">29 AZN</div>
+            <img src="photos/IMG_4539.jpg" alt="Şokoladlı Paxlava">
+            <div class="product-info">
+                <h3>Soyuq Paxlava</h3>
+                <p>Şokolad qatları və fındıq uyğunluğu.</p>
+                <a href="https://wa.me/994XXXXXXXXX?text=Salam,%20Soyuq%20Paxlava%20sifari%C5%9F%20etm%C3%A4k%20ist%C3%A4yir%C3%A4m." class="btn-order">Sifariş Et</a>
             </div>
         </div>
     </div>
@@ -355,32 +389,21 @@
     </div>
 </section>
 
-<section id="testimonials" class="section" style="background-color: rgba(197, 160, 89, 0.05);">
+<section class="instagram-section">
     <div class="section-title">
-        <h2>Müştəri Rəyləri</h2>
-        <p>Sizin məmnuniyyətiniz bizim ən böyük qazancımızdır</p>
+        <h2>Bizi İzləyin</h2>
+        <p>Hazırlanma prosesini və ən son kampaniyaları qaçırmayın</p>
     </div>
-    <div class="testimonials">
-        <div class="testimonial-card">
-            <p>"Bakıda yediyim ən ləzzətli və təzə paxlavadır. Şəkəri tam qərarında, püstəsi isə boldur."</p>
-            <span class="author">— Leyla M.</span>
-        </div>
-        <div class="testimonial-card">
-            <p>"Sifarişim çox tez çatdırıldı. Qablaşdırması çox peşəkar idi, hədiyyə aparmaq üçün idealdır."</p>
-            <span class="author">— Anar Q.</span>
-        </div>
-        <div class="testimonial-card">
-            <p>"Həqiqi kərə yağı dadı gəlir. Ailəlikcə çox bəyəndik, hər kəsə tövsiyə edirəm."</p>
-            <span class="author">— Günel S.</span>
-        </div>
-    </div>
+    <a href="https://instagram.com/bonasweetpaxlava" target="_blank" class="insta-btn">
+        Instagram-da İzlə @bonasweetpaxlava
+    </a>
 </section>
 
 <footer id="order">
     <h2>Sifariş üçün</h2>
     <p>WhatsApp və ya zəng vasitəsilə əlaqə saxlaya bilərsiniz.</p>
     <p><strong>Telefon/WP:</strong> +994 00 000 00 00</p>
-    <p>&copy; 2026 Bona Sweet Paxlava</p>
+    <p>&copy; 2026 Bona Sweet Phaklava</p>
 </footer>
 
 </body>
