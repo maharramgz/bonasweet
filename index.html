@@ -19,7 +19,6 @@
             background-color: var(--cream);
             color: var(--dark);
             line-height: 1.6;
-            /* Mobil double-tap zoom-u brauzer səviyyəsində də dayandırmaq üçün */
             touch-action: manipulation;
         }
 
@@ -39,7 +38,6 @@
             display: flex;
             align-items: center;
             position: relative;
-            /* Üçüncü məsələ: Loqonun klikləri bloklamaması üçün pointer-events */
             pointer-events: none; 
             z-index: 1;
         }
@@ -50,12 +48,10 @@
             margin-bottom: -40px;
             object-fit: contain;
             transform: translateY(10px);
-            /* Şəklin özü kliklənə bilsin (əgər gələcəkdə link qoysanız) */
             pointer-events: auto;
         }
 
         nav {
-            /* Menyunun loqonun üstündə qalması üçün */
             position: relative;
             z-index: 1001;
         }
@@ -74,10 +70,9 @@
         .hero {
             text-align: center;
             padding: 120px 10%;
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('photos/herobg.png');
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('photos/IMG_4549.jpg');
             background-size: cover;
             background-position: center;
-            /* İkinci məsələ üçün qeyd: bəzi mobil brauzerlər 'fixed' dəstəkləmir */
             background-attachment: fixed;
             color: var(--white);
         }
@@ -96,12 +91,6 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-        .section-title p {
-            font-style: italic;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
 
         .features {
             display: grid;
@@ -118,24 +107,9 @@
             text-align: center;
             overflow: hidden;
         }
-        .feature-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gold);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
         .feature-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            border-color: var(--gold);
-        }
-        .feature-card:hover::before {
-            transform: scaleX(1);
         }
         .feature-icon-circle {
             width: 70px;
@@ -151,18 +125,6 @@
             font-size: 1.5rem;
             font-weight: bold;
         }
-        .feature-card h3 {
-            color: var(--dark);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .feature-card p {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.7;
-        }
 
         .product-grid {
             display: grid;
@@ -175,6 +137,7 @@
             overflow: hidden;
             transition: transform 0.3s;
             border: 1px solid #eee;
+            position: relative; /* Qiymət etiketi üçün */
         }
         .product-card:hover { transform: translateY(-5px); }
         .product-card img {
@@ -182,6 +145,22 @@
             height: 250px;
             object-fit: cover;
         }
+
+        /* Qiymət Etiketi */
+        .price-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
         .product-info { padding: 20px; text-align: center; }
         .btn-order {
             background: var(--gold);
@@ -208,10 +187,6 @@
                 flex-direction: column;
                 text-align: center;
             }
-            .logo {
-                margin-bottom: 0.5rem;
-                pointer-events: none; /* Mobildə də linklərin önünü kəsməməsi üçün */
-            }
             .logo img {
                 height: 120px;
                 margin-top: -30px;
@@ -219,21 +194,32 @@
                 transform: translateY(5px);
             }
             nav a {
-                margin: 0 10px;
-                font-size: 0.8rem;
+                margin: 0 7px;
+                font-size: 0.75rem;
             }
             .hero { 
-                padding: 80px 5%; 
-                /* İkinci məsələ: Mobildə fixed background çox vaxt işləmir, scroll-a keçiririk */
+                padding: 60px 5%; 
                 background-attachment: scroll; 
             }
-            .hero h1 { font-size: 2rem; }
-            .section { padding: 40px 5%; }
-            .section-title h2 { font-size: 1.8rem; }
-            .product-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            .hero h1 { font-size: 1.8rem; }
+
+            /* Kartların ölçüsünü kiçiltmək */
+            .section { padding: 30px 5%; }
+            .features {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
                 gap: 20px;
             }
+            .feature-card { padding: 25px 20px; }
+            .feature-icon-circle { width: 50px; height: 50px; font-size: 1.2rem; }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 20px;
+            }
+            .product-card img { height: 200px; }
+            .product-info { padding: 15px; }
+            .product-info h3 { font-size: 1.1rem; }
+            .product-info p { font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -258,23 +244,22 @@
 <section id="quality" class="section">
     <div class="section-title">
         <h2>Niyə Biz?</h2>
-        <p>Hər bir dilimdə illərin təcrübəsi və premium inqrediyentlərin mükəmməl harmoniyası</p>
     </div>
     <div class="features">
         <div class="feature-card">
             <div class="feature-icon-circle">01</div>
             <h3>Yüksək Keyfiyyət</h3>
-            <p>Yalnız seçilmiş Antep püstəsi və ən təmiz kərə yağından istifadə edirik. Dadımız təbiiliyimizdən gəlir.</p>
+            <p>Yalnız seçilmiş Antep püstəsi və ən təmiz kərə yağından istifadə edirik.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon-circle">02</div>
             <h3>Gündəlik Təravət</h3>
-            <p>Məhsullarımız heç bir konservant əlavə edilmədən, sifariş günü bişirilir. Süfrənizə gələn hər paxlava ətri üstündədir.</p>
+            <p>Məhsullarımız heç bir konservant əlavə edilmədən bişirilir.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon-circle">03</div>
             <h3>Mütləq Gigiyena</h3>
-            <p>Hazırlanma prosesində bütün sanitariya qaydalarına mütləq riayət olunur. Sağlamlığınız bizim üçün dad qədər önəmlidir.</p>
+            <p>Sağlamlığınız bizim üçün dad qədər önəmlidir.</p>
         </div>
     </div>
 </section>
@@ -285,6 +270,7 @@
     </div>
     <div class="product-grid">
         <div class="product-card">
+            <div class="price-tag">25 AZN</div>
             <img src="photos/klasik.png" alt="Püstəli Paxlava">
             <div class="product-info">
                 <h3>Klassik Türk Paxlavası</h3>
@@ -293,6 +279,7 @@
             </div>
         </div>
         <div class="product-card">
+            <div class="price-tag">28 AZN</div>
             <img src="photos/sobiyet.png" alt="Qozlu Paxlava">
             <div class="product-info">
                 <h3>Qaymaqlı Şöbiyet</h3>
@@ -301,6 +288,7 @@
             </div>
         </div>
         <div class="product-card">
+            <div class="price-tag">30 AZN</div>
             <img src="photos/sokoladli.png" alt="Şokoladlı Paxlava">
             <div class="product-info">
                 <h3>Şokoladlı Türk Paxlavası</h3>
@@ -309,6 +297,7 @@
             </div>
         </div>
         <div class="product-card">
+            <div class="price-tag">26 AZN</div>
             <img src="photos/diaqonal.png" alt="Şokoladlı Paxlava">
             <div class="product-info">
                 <h3>Şokoladlı Paxlava</h3>
@@ -317,6 +306,7 @@
             </div>
         </div>
         <div class="product-card">
+            <div class="price-tag">32 AZN</div>
             <img src="photos/nutellali.png" alt="Şokoladlı Paxlava">
             <div class="product-info">
                 <h3>Nutellalı</h3>
@@ -325,6 +315,7 @@
             </div>
         </div>
         <div class="product-card">
+            <div class="price-tag">22 AZN</div>
             <img src="photos/kadayif.png" alt="Şokoladlı Paxlava">
             <div class="product-info">
                 <h3>Şokoladlı Paxlava</h3>
@@ -333,6 +324,7 @@
             </div>
         </div>
         <div class="product-card">
+            <div class="price-tag">35 AZN</div>
             <img src="photos/IMG_4539.jpg" alt="Şokoladlı Paxlava">
             <div class="product-info">
                 <h3>Soyuq Paxlava</h3>
