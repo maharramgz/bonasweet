@@ -152,16 +152,21 @@
             position: relative;
             display: flex;
             flex-direction: column;
+            /* UPGRADE: Slight Frame */
+            outline: 1px solid var(--gold-light);
+            outline-offset: -10px;
         }
         
         .product-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            /* Çərçivənin şəklin üstünə düşməməsi üçün */
+            border-bottom: 1px solid #eee;
         }
 
         .product-info { 
-            padding: 15px; 
+            padding: 25px 15px 15px; /* Çərçivəyə görə yuxarı padding artırıldı */
             text-align: center;
             flex-grow: 1;
             display: flex;
@@ -174,8 +179,8 @@
 
         .price-tag {
             position: absolute;
-            top: 12px;
-            right: 12px;
+            top: 15px; /* Çərçivəyə görə tənzimləndi */
+            right: 15px;
             background: var(--gold);
             color: white;
             padding: 4px 12px;
@@ -184,6 +189,31 @@
             font-size: 0.85rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             z-index: 2;
+        }
+
+        /* UPGRADE: Portion Selector Styles */
+        .portion-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .portion-btn {
+            background: var(--white);
+            border: 1px solid var(--gold-light);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .portion-btn.active {
+            background: var(--gold-light);
+            color: var(--white);
+            border-color: var(--gold-light);
         }
 
         .btn-order {
@@ -233,11 +263,19 @@
                 grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
                 gap: 12px;
             }
+            .product-card {
+                outline-offset: -8px; /* Mobildə çərçivə tənzimləndi */
+            }
             .product-card img { height: 140px; }
-            .product-info { padding: 10px; }
+            .product-info { padding: 15px 10px 10px; }
             .product-info h3 { font-size: 0.9rem; }
             .product-info p { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 0.75rem; }
+            
+            .portion-selector { gap: 5px; margin-bottom: 10px; }
+            .portion-btn { padding: 3px 10px; font-size: 0.7rem; }
+
             .btn-order { padding: 6px 12px; font-size: 0.75rem; }
+            .price-tag { top: 10px; right: 10px; }
         }
     </style>
 </head>
@@ -265,14 +303,21 @@
     </div>
     <div class="product-grid">
         <div class="product-card">
-            <div class="price-tag">25 AZN</div>
+            <div class="price-tag" id="price-klasik">13 AZN</div>
             <img src="photos/klasik.png" alt="Püstəli Paxlava">
             <div class="product-info">
                 <h3>Klassik Türk Paxlavası</h3>
                 <p>İncə 40 qat xəmir və bol püstə.</p>
+                
+                <div class="portion-selector">
+                    <button class="portion-btn active" onclick="changePrice('klasik', '500q', '13 AZN')">500q</button>
+                    <button class="portion-btn" onclick="changePrice('klasik', '1kq', '25 AZN')">1kq</button>
+                </div>
+                
                 <a href="https://wa.me/994XXXXXXXXX" class="btn-order">Sifariş Et</a>
             </div>
         </div>
+
         <div class="product-card">
             <div class="price-tag">28 AZN</div>
             <img src="photos/sobiyet.png" alt="Qozlu Paxlava">
@@ -360,6 +405,26 @@
     <p><strong>Telefon/WP:</strong> +994 00 000 00 00</p>
     <p>&copy; 2026 Bona Sweet Phaklava</p>
 </footer>
+
+<script>
+    function changePrice(productId, portion, price) {
+        // Qiymət etiketini tap və dəyiş
+        const priceTag = document.getElementById('price-' + productId);
+        if (priceTag) {
+            priceTag.innerText = price;
+        }
+
+        // Düymələrin aktivliyini tənzimlə (yalnız kliklənən kartın daxilində)
+        const productCard = priceTag.closest('.product-card');
+        const buttons = productCard.querySelectorAll('.portion-btn');
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.innerText === portion) {
+                btn.classList.add('active');
+            }
+        });
+    }
+</script>
 
 </body>
 </html>
