@@ -47,10 +47,12 @@
 
         .hero {
             text-align: center;
-            padding: 80px 10%;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hero-bg.jpg');
+            padding: 120px 10%; /* Mobil üçün padding-i artırdıq */
+            /* Arxa plan şəkli üçün dəyişikliklər: */
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('photos/hero-bg.jpg'); /* 'photos/hero-bg.jpg' yerinə öz şəklinizin adını yazın */
             background-size: cover;
             background-position: center;
+            background-attachment: fixed; /* Arxa plan şəklinin sabit qalması üçün (isteğe bağlı) */
             color: var(--white);
         }
 
@@ -115,6 +117,46 @@
             color: var(--white);
             text-align: center;
             padding: 40px;
+        }
+
+        /* Mobil Optimizasiya üçün Media Query: */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 3%; /* Header padding-ini azaltdıq */
+                flex-direction: column; /* Loqo və nav-ı alt-alta qoyduq */
+                text-align: center;
+            }
+
+            .logo img {
+                height: 100px; /* Mobil üçün loqonu kiçiltdik */
+                margin-bottom: 1rem;
+            }
+
+            nav a {
+                margin: 0 10px; /* Nav linkləri arasındakı məsafəni azaltdıq */
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding: 80px 5%; /* Hero padding-ini azaltdıq */
+            }
+
+            .hero h1 {
+                font-size: 2rem; /* Hero başlığını kiçiltdik */
+            }
+
+            .section {
+                padding: 40px 5%; /* Bölmə padding-ini azaltdıq */
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem; /* Bölmə başlığını kiçiltdik */
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Məhsul şəbəkəsini uyğunlaşdırdıq */
+                gap: 20px;
+            }
         }
     </style>
 </head>
@@ -215,7 +257,7 @@
             <div class="product-info">
                 <h3>Soyuq Paxlava</h3>
                 <p>Şokolad qatları və fındıq ləpəsinin mükəmməl uyğunluğu.</p>
-                <a href="https://wa.me/994708882080" class="btn-order">Sifariş Et</a>
+                <a href="https://wa.me/994XXXXXXXXX" class="btn-order">Sifariş Et</a>
             </div>
         </div>
     </div>
