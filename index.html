@@ -8,8 +8,8 @@
         :root {
             --gold: #c5a059;
             --dark: #2c2c2c;
-            /* Yeni kərə yağı tonunda qızılı arxa plan */
-            --cream: #f9f1e2; 
+            /* Saytın arxa planı üçün yumşaq kərə yağı/qızılı tonu */
+            --cream: #f9f3e5; 
             --white: #ffffff;
             --gold-light: #e0c9a6;
         }
@@ -193,6 +193,7 @@
                 flex-direction: column;
                 text-align: center;
             }
+            .logo { margin-bottom: 0.5rem; }
             .logo img {
                 height: 120px;
                 margin-top: -30px;
@@ -201,30 +202,18 @@
             }
             nav a { margin: 0 10px; font-size: 0.8rem; }
             
-            /* Mobil üçün Hero-nun kiçildilməsi */
             .hero { 
-                padding: 50px 5%; 
+                padding: 80px 5%; 
                 background-attachment: scroll; 
             }
-            .hero h1 { font-size: 1.6rem; }
-            .hero p { font-size: 0.85rem; }
+            .hero h1 { font-size: 2rem; }
             
-            /* Bölmələrin (Why Us və s.) kiçildilməsi */
-            .section { padding: 35px 5%; }
-            .section-title { margin-bottom: 25px; }
-            .section-title h2 { font-size: 1.4rem; }
-            .section-title p { font-size: 0.85rem; }
+            .section { padding: 30px 5%; }
+            .section-title { margin-bottom: 30px; }
+            .section-title h2 { font-size: 1.6rem; }
             
-            .features { gap: 15px; }
-            .feature-card { padding: 20px 15px; }
-            .feature-icon-circle { 
-                width: 50px; 
-                height: 50px; 
-                font-size: 1.1rem; 
-                margin-bottom: 15px; 
-            }
-            .feature-card h3 { font-size: 1rem; margin-bottom: 8px; }
-            .feature-card p { font-size: 0.8rem; }
+            .features { gap: 20px; }
+            .feature-card { padding: 25px 20px; }
             
             .product-grid {
                 grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -232,12 +221,15 @@
             }
             .product-card img { height: 160px; }
             .product-info { padding: 12px; }
-            .product-info h3 { font-size: 0.9rem; }
-            
-            /* Footer/Order məlumatlarının kiçildilməsi */
-            footer { padding: 25px 20px; }
-            footer h2 { font-size: 1.3rem; margin-bottom: 10px; }
-            footer p { font-size: 0.8rem; line-height: 1.4; }
+            .product-info h3 { font-size: 0.95rem; margin: 5px 0; }
+            .product-info p { font-size: 0.75rem; line-height: 1.3; }
+            .btn-order { padding: 8px 15px; font-size: 0.8rem; }
+            .price-tag { 
+                font-size: 0.75rem; 
+                padding: 3px 10px; 
+                top: 10px; 
+                right: 10px; 
+            }
         }
     </style>
 </head>
